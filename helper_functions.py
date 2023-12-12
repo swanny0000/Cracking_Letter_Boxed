@@ -24,7 +24,9 @@ def check_next_level(letters_list, words_dict, current_string, current_index, mi
     for index in range(len(letters_list)):
       if index != current_index:
         for letter in letters_list[index]:
-          check_next_level(letters_list, words_dict, current_string+letter, index, max_length)
+          check_next_level(letters_list=letters_list, words_dict=words_dict,
+                           current_string=current_string+letter, current_index=index,
+                           min_length=min_length, max_length=max_length)
           if check_word(current_string) == True & len(current_string) >= min_length:
             words_dict[current_string] = 1
     return
@@ -35,5 +37,7 @@ def find_valid_words(letters_list, min_length=4, max_length=12):
   words_dict = {}
   for index in range(len(letters_list)):
     for letter in letters_list[index]:
-      check_next_level(letters_list, words_dict, letter, index, max_length)
+      check_next_level(letters_list=letters_list, words_dict=words_dict,
+                       current_string=letter, current_index=index,
+                       min_length=min_length, max_length=max_length)
   return words_dict
