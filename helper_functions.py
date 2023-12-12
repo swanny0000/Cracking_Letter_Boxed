@@ -15,7 +15,7 @@ def is_valid_letters_list(letters_list):
       return False
   return True
 
-def check_next_level(letters_list, words_dict, current_string, current_index, max_length=12):
+def check_next_level(letters_list, words_dict, current_string, current_index, min_length=4, max_length=12):
   if len(current_string) >= max_length:
     if check_word(current_string) == True:
       words_dict[current_string] = 1
@@ -25,11 +25,11 @@ def check_next_level(letters_list, words_dict, current_string, current_index, ma
       if index != current_index:
         for letter in letters_list[index]:
           check_next_level(letters_list, words_dict, current_string+letter, index, max_length)
-          if check_word(current_string) == True & len(current_string) > 2:
+          if check_word(current_string) == True & len(current_string) >= min_length:
             words_dict[current_string] = 1
     return
 
-def find_valid_words(letters_list, max_length=12):
+def find_valid_words(letters_list, min_length=4, max_length=12):
   #if not is_valid_letters_list(letters_list):
   #  raise Exception("letters_list must be a list of four sets of three letters")
   words_dict = {}
